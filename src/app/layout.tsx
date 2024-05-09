@@ -1,22 +1,29 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
+import { Inter } from 'next/font/google';
+import './globals.css';
+import Header from '@/components/Header';
+import Providers from './Providers';
+import Navbar from "@/components/Navbar";
+import { ReactNode } from 'react';
+import SearchBox from '@/components/SearchBox';
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ['latin'] });
 
-export const metadata: Metadata = {
-  title: "IMDB clone",
-  description: "this is a demo project",
+export const metadata = {
+  title: 'IMDb clone',
+  description: 'This is a movie database clone',
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }:{children:ReactNode}) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <Providers>
+          <Header />
+          <Navbar />
+          <SearchBox/>
+          {children}
+        </Providers>
+      </body>
     </html>
   );
 }
